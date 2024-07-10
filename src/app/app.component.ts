@@ -16,7 +16,9 @@ export class AppComponent {
 
   firstName = '';
   lastName = '';
+  dob = '';
   emailAddress = '';
+
 
   defaultCountry = "America"
 
@@ -36,5 +38,28 @@ export class AppComponent {
     console.log('Street name ', this.form.value.address.controls.street1)
     console.log('City name ', this.form.value.address.controls.city)
     
+  }
+
+  generateUsername() {
+    let username = '';
+    if(this.firstName.length >= 3) {
+      username += this.firstName.slice(0,3)
+    } else {
+      username += this.firstName;
+    }
+    if(this.lastName.length >= 3) {
+      username += this.lastName.slice(0,3)
+    } else {
+      username += this.lastName;
+    }
+
+    let dateTime = new Date(this.dob)
+    username += dateTime.getFullYear();
+
+    username = username.toLowerCase();
+
+    console.log("user name = ", username)
+
+     this.form.value.username = username;
   }
 }
