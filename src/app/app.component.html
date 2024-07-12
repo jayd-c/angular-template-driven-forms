@@ -4,20 +4,20 @@
   <form class="form" (ngSubmit)="onFormSubmitted()" #registrationForm="ngForm">
     <div class="column">
       <div class="input-box">
-        <input type="text" placeholder="First Name" required name="firstName" [(ngModel)]="firstName" #fName="ngModel"/>
+        <input type="text" placeholder="First Name" required name="firstName" #fName="ngModel" ngModel/>
         <small *ngIf="fName.invalid && fName.touched">* First name is a required field</small>
         <span *ngIf="firstName">You entered: {{firstName}}</span>
       </div> 
         
       <div class="input-box">
-        <input type="text" placeholder="Last Name" name="lastName" #lName="ngModel"   required [(ngModel)]="lastName"/>
+        <input type="text" placeholder="Last Name" name="lastName" #lName="ngModel"  ngModel required />
         <small *ngIf="lName.invalid && lName.touched">* Last name is a required field</small>
         <span *ngIf="lastName">You entered: {{lastName}}</span>
       </div>
     </div>    
 
     <div class="input-box">
-      <input type="text" placeholder="Email" name="email"  #eEmail="ngModel" required email [(ngModel)]="emailAddress"/>
+      <input type="text" placeholder="Email" name="email" ngModel #eEmail="ngModel" required email />
       <div>
         <small *ngIf="eEmail.invalid && eEmail.touched">* email is a required field</small>
       <span *ngIf="emailAddress">You entered: {{emailAddress}}</span>
@@ -29,16 +29,21 @@
         <input type="number" placeholder="Phone Number" name="phone" ngModel/>
       </div>
       <div class="input-box">
-        <input type="date"  #tempDob="ngModel" placeholder="Date of Birth" name="dob" [(ngModel)]="dob" required />
+        <input type="date"  #tempDob="ngModel" placeholder="Date of Birth" name="dob"  required ngModel/>
       </div>
     </div>
 
     <div class="input-box">
       <input type="text" placeholder="username" name="username" required ngModel #uName="ngModel"/>
-      <button class="btn-gen-username" [disabled]="fName.invalid || lName.invalid || tempDob.invalid" type="button"
+      <button class="btn-gen-username" 
+      [disabled]="fName.invalid || lName.invalid || tempDob.invalid" 
+      type="button"
       (click)="generateUsername()">
         Create a Username
       </button>
+      <div>
+        <small *ngIf="uName.invalid && uName.touched">*Username is a required field</small>
+      </div>
     </div>
 
     <div class="gender-box">
@@ -90,4 +95,27 @@
     <small *ngIf="addr.invalid && addr.touched">*One or more of the address fields do not contain a valid value</small>
     <input type="submit" value="Submit" class="submit-btn" [disabled]="!registrationForm.valid"> 
   </form>
+</section>
+
+<section class="user-detail-container">
+  <div class="user-details-container">
+    <div class="user-avatar">
+      <p>{{firstName.slice(0, 1).toUpperCase()}}{{lastName.slice(0, 1).toUpperCase()}}</p>
+    </div>
+    <div class="user-details">
+      <div class="user-name">
+        <h2>{{ firstName }} {{ lastName }}</h2>
+      </div>
+      <p><b>Email:</b> {{ email}}</p>
+      <p><b>Username:</b> {{ userName }} </p>
+      <p><b>Date of birth:</b> {{ dob }}</p>
+      <div class="user-name">
+        <h3>Address</h3>
+      </div>
+      <span>{{street1 }}</span>.
+      <span>{{ city }}</span>.
+      <span>{{ country }}</span>.
+      <span> {{ postal }}</span>
+    </div>
+  </div>
 </section>

@@ -17,10 +17,19 @@ export class AppComponent {
   firstName = '';
   lastName = '';
   dob = '';
-  emailAddress = '';
+  emailAddress =  "";
+  city =  "";
+  country =  "";
+  postal =  "";
+  region =  "";
+  street1 =  "";
+  street2 =  "";
+  email = '';
 
   defaultGender = "male";
   defaultCountry = "America"
+
+  userName ='';
 
   @ViewChild('registrationForm') form: NgForm;
 
@@ -32,11 +41,26 @@ export class AppComponent {
 
   onFormSubmitted(){
     console.log(this.form);
-    console.log('gender is ' + this.form.value.gender)
-    console.log('first name is ' + this.form.value.firstName)
-    console.log('last name is '+ this.form.controls['lastName'].value)
-    console.log('Street name ', this.form.value.address.street1)
-    console.log('City name ', this.form.value.address.city)
+    // console.log('gender is ' + this.form.value.gender)
+    // console.log('first name is ' + this.form.value.firstName)
+    // console.log('last name is '+ this.form.controls['lastName'].value)
+    // console.log('Street name ', this.form.value.address.street1)
+    // console.log('City name ', this.form.value.address.city)
+    // console.log("user name is : " + this.form.value.username)
+
+    this.firstName = this.form.value.firstName
+    this.lastName = this.form.value.lastName
+    this.dob = this.form.value.dob
+    this.emailAddress = this.form.value.emailAddress
+    this.city = this.form.value.address.city
+    this.country = this.form.value.address.country
+    this.postal = this.form.value.address.postal
+    this.region = this.form.value.address.region
+    this.street1 = this.form.value.address.street1
+    this.street2 = this.form.value.address.street2
+    this.region = this.form.value.address.region
+    this.userName = this.form.value.username
+    this.email = this.form.value.email
     //reset the form
     this.form.reset();
 
@@ -70,33 +94,33 @@ export class AppComponent {
     // this.form.value.username = username;
     //  this.form.controls['username'].value = username;
 
-    this.form.setValue({
-      address: {
-        city: this.form.value.address.city,
-        country: this.form.value.address.country,
-        postal: this.form.value.address.postal,
-        region: this.form.value.address.region,
-        street1: this.form.value.address.street1,
-        street2: this.form.value.address.street2,
-      },
-      dob: this.form.value.dob,
-      email: this.form.value.email,
-      firstName: this.form.value.firstName,
-      gender: this.form.value.gender,
-      lastName: this.form.value.lastName,
-      phone: this.form.value.phone,
-      username: username
-     })
+    // this.form.setValue({
+    //   address: {
+    //     city: this.form.value.address.city,
+    //     country: this.form.value.address.country,
+    //     postal: this.form.value.address.postal,
+    //     region: this.form.value.address.region,
+    //     street1: this.form.value.address.street1,
+    //     street2: this.form.value.address.street2,
+    //   },
+    //   dob: this.form.value.dob,
+    //   email: this.form.value.email,
+    //   firstName: this.form.value.firstName,
+    //   gender: this.form.value.gender,
+    //   lastName: this.form.value.lastName,
+    //   phone: this.form.value.phone,
+    //   username: username
+    //  })
 
-    // this.form.form.patchValue({
-    //   username:username,
+    this.form.form.patchValue({
+      username:username,
 
-    //   //incase you want to assign country with value 'America'
+      //incase you want to assign country with value 'America'
 
-    //   // address: {
-    //   //   country:'America'
-    //   // }
-    // })
+      // address: {
+      //   country:'America'
+      // }
+    })
      
   }
 }
