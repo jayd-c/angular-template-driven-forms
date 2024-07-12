@@ -58,8 +58,39 @@ export class AppComponent {
 
     username = username.toLowerCase();
 
-    console.log("user name = ", username)
+    // console.log("user name = ", username)
+    // this.form.value.username = username;
+    //  this.form.controls['username'].value = username;
 
-     this.form.value.username = username;
+    // this.form.setValue({
+    //   address: {
+    //     city: this.form.value.address.city,
+    //     country: this.form.value.address.country,
+    //     post: this.form.value.address.post,
+    //     region: this.form.value.address.region,
+    //     street1: this.form.value.address.street1,
+    //     street2: this.form.value.address.street2,
+    //   },
+    //   dob: this.form.value.dob,
+    //   email: this.form.value.email,
+    //   firstName: this.form.value.firstName,
+    //   gender: this.form.value.gender,
+    //   lastName: this.form.value.lastName,
+    //   phone: this.form.value.phone,
+    //   username: username
+    //  })
+
+    this.form.form.patchValue({
+      username:username,
+
+      //incase you want to assign country with value 'America'
+
+      address: {
+        country:'America'
+      }
+    })
+     
   }
 }
+
+
