@@ -35,7 +35,7 @@
 
     <div class="input-box">
       <input type="text" placeholder="username" name="username" required ngModel #uName="ngModel"/>
-      <button class="btn-gen-username" [disabled]="fName.invalid || lName.invalid || tempDob.invalid"
+      <button class="btn-gen-username" [disabled]="fName.invalid || lName.invalid || tempDob.invalid" type="button"
       (click)="generateUsername()">
         Create a Username
       </button>
@@ -46,7 +46,7 @@
       <div class="gender-option">
         @for(gender of genders; track gender.id; let index = $index){
           <div class="gender">
-            <input type="radio" [id]="gender.id" [value]="gender.value" name="gender" ngModel/>
+            <input type="radio" [id]="gender.id"  required [value]="gender.value" name="gender"  [ngModel]="defaultGender"/>
             <label for="{{gender.id}}">{{gender.display}}</label>
           </div>
         }
@@ -63,6 +63,7 @@
           <label for="check-other">prefer not to say</label>
         </div> -->
       </div>
+
     </div>
 
     <div class="input-box address" ngModelGroup="address" #addr="ngModelGroup">
@@ -83,7 +84,7 @@
       </div>
       <div class="column">
         <input type="text" placeholder="Region" name="region"  ngModel/>
-        <input type="number" placeholder="Postal code" required  name="post" ngModel/>
+        <input type="number" placeholder="Postal code" required  name="postal" ngModel/>
       </div>
     </div>
     <small *ngIf="addr.invalid && addr.touched">*One or more of the address fields do not contain a valid value</small>
