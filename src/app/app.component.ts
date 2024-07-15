@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
+import { last } from 'rxjs';
 import { __values } from 'tslib';
 
 @Component({
@@ -24,7 +25,7 @@ export class AppComponent {
   region =  "";
   street1 =  "";
   street2 =  "";
-  email = '';
+  gender = '';
 
   defaultGender = "male";
   defaultCountry = "America"
@@ -48,8 +49,8 @@ export class AppComponent {
     // console.log('City name ', this.form.value.address.city)
     // console.log("user name is : " + this.form.value.username)
 
-    this.firstName = this.form.value.firstName
-    this.lastName = this.form.value.lastName
+    this.firstName = this.form.value.firstname
+    this.lastName = this.form.value.lastname
     this.dob = this.form.value.dob
     this.emailAddress = this.form.value.emailAddress
     this.city = this.form.value.address.city
@@ -60,7 +61,7 @@ export class AppComponent {
     this.street2 = this.form.value.address.street2
     this.region = this.form.value.address.region
     this.userName = this.form.value.username
-    this.email = this.form.value.email
+    this.emailAddress = this.form.value.email
     //reset the form
     this.form.reset();
 
@@ -70,25 +71,35 @@ export class AppComponent {
         country:'India'
       }
     })
+
+
+    console.log(this.firstName)
+    console.log(this.lastName)
   }
 
   generateUsername() {
     let username = '';
-    if(this.firstName.length >= 3) {
-      username += this.firstName.slice(0,3)
+    let fName = this.form.value.firstname;
+    let lName = this.form.value.lastname;
+    let dobTemp = this.form.value.dob;
+
+    if(fName.length >= 3) {
+      username += fName.slice(0,3);
     } else {
-      username += this.firstName;
+      username += fName;
     }
-    if(this.lastName.length >= 3) {
-      username += this.lastName.slice(0,3)
+    if(lName.length >= 3) {
+      username += lName.slice(0,3)
     } else {
-      username += this.lastName;
+      username += lName;
     }
 
-    let dateTime = new Date(this.dob)
+    let dateTime = new Date(dobTemp)
     username += dateTime.getFullYear();
 
     username = username.toLowerCase();
+    // console.log('first name is : ' + fName)
+    // console.log('username is : ' + username);
 
     // console.log("user name = ", username)
     // this.form.value.username = username;
@@ -117,9 +128,9 @@ export class AppComponent {
 
       //incase you want to assign country with value 'America'
 
-      // address: {
-      //   country:'America'
-      // }
+      address: {
+        country:'America'
+      }
     })
      
   }
